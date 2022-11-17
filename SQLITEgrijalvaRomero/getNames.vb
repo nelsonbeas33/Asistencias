@@ -108,8 +108,6 @@ Public Class getNames
             Label1.Text = "no insertada"
         End If
 
-        Label1.Text = AsistenciaEmpleado.Salida
-
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
@@ -117,6 +115,7 @@ Public Class getNames
         Dim AsistenciaEmpleado = New Asistencia With {
             .ClvEmpleado = 2042777
         }
+
 
         If AsistenciaEmpleado.InsertarSalida() Then
             Label1.Text = "salida con exito"

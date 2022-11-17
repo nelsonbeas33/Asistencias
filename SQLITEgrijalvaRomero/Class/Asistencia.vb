@@ -56,9 +56,9 @@ Public Class Asistencia
 
         Dim AsistenciaEmpleado = BuscarAsistencia(ClvEmpleado)
 
-        If AsistenciaEmpleado.ClvEmpleado <> 0 And AsistenciaEmpleado.Salida = "" Then
-            ComandText = "UPDATE Asistencia SET Salida = " + Format(DateTime.Now(), "hh:mm:ss")
-            ComandText += " WHERE ClvEmpleado = " + ClvEmpleado + ";"
+        If AsistenciaEmpleado.ClvEmpleado <> 0 And Format(AsistenciaEmpleado.Salida, "d/m/yy") = "1/0/01" Then
+            ComandText = "UPDATE Asistencia SET Salida = '" + Format(DateTime.Now(), "hh:mm:ss") + "'"
+            ComandText += " WHERE ClvEmpleado = " + ClvEmpleado.ToString() + ";"
 
             Dim Query As New SQLiteCommand(ComandText, objConn)
             Query.ExecuteNonQuery()
@@ -76,29 +76,30 @@ Public Class Asistencia
         Dim objReader As SQLiteDataReader
         Dim AsistenciaTMp As Asistencia
 
-        Try
-            objConn = New SQLiteConnection(cadena_conexion)
-            objConn.Open()
-            objcommand = objConn.CreateCommand()
-            objcommand.CommandText = "SELECT * FROM Asistencia WHERE ClvEmpleado = " + _ClvEmpleado
-            objReader = objcommand.ExecuteReader()
-            AsistenciaTMp = New Asistencia()
+        objConn = New SQLiteConnection(cadena_conexion)
+        objConn.Open()
+        objcommand = objConn.CreateCommand()
+        objcommand.CommandText = "SELECT * FROM Asistencia 
+            WHERE ClvEmpleado = " + _ClvEmpleado.ToString() + ""
+        objReader = objcommand.ExecuteReader()
+        AsistenciaTMp = New Asistencia()
 
-            If (Not objReader.Read()) Then
-                Return AsistenciaTMp
-            End If
-
-            AsistenciaTMp.ClvEmpleado = objReader("ClvEmpleado")
-
+        If (Not objReader.Read()) Then
             Return AsistenciaTMp
+        End If
 
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        Finally
-            If Not IsNothing(objConn) Then
-                objConn.Close()
-            End If
-        End Try
+        AsistenciaTMp.Id = objReader("Id")
+        AsistenciaTMp.ClvEmpleado = objReader("ClvEmpleado")
+        AsistenciaTMp.Fecha = objReader("Fecha")
+        AsistenciaTMp.Llegada = objReader("Llegada")
+
+        If (objReader("Salida") <> "") Then
+            AsistenciaTMp.Salida = objReader("Salida")
+        End If
+
+        Return AsistenciaTMp
+
+        objConn.Close()
 
     End Function
 

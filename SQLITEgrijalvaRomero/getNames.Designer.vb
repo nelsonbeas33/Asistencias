@@ -60,7 +60,7 @@ Partial Class getNames
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(231, 71)
+        Me.Label1.Location = New System.Drawing.Point(239, 69)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(39, 13)
         Me.Label1.TabIndex = 3
