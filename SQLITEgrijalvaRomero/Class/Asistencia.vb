@@ -57,9 +57,8 @@ Public Class Asistencia
         Dim AsistenciaEmpleado = BuscarAsistencia(ClvEmpleado)
 
         If AsistenciaEmpleado.ClvEmpleado <> 0 And Format(AsistenciaEmpleado.Salida, "d/m/yy") = "1/0/01" Then
-            ComandText = "UPDATE Asistencia SET Salida = '" + Format(DateTime.Now(), "hh:mm:ss") + "'"
-            ComandText += " WHERE ClvEmpleado = " + ClvEmpleado.ToString() + ";"
 
+            ComandText = "delete * FROM Asistencia WHERE ClvEmpleado = " + ClvEmpleado.ToString()
             Dim Query As New SQLiteCommand(ComandText, objConn)
             Query.ExecuteNonQuery()
             objConn.Close()
