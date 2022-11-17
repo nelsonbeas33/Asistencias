@@ -99,7 +99,8 @@ Public Class getNames
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
 
         Dim AsistenciaEmpleado = New Asistencia With {
-            .ClvEmpleado = 2042777
+            .ClvEmpleado = 2042777,
+            .Fecha = Format(DateAndTime.Now(), "dd/MM/yyyy")
         }
 
         If AsistenciaEmpleado.InsertarAsitencia() Then
@@ -113,15 +114,26 @@ Public Class getNames
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
 
         Dim AsistenciaEmpleado = New Asistencia With {
-            .ClvEmpleado = 2042777
+            .ClvEmpleado = 2042777,
+            .Fecha = Format(DateAndTime.Now(), "dd/MM/yyyy")
         }
 
-
-        If AsistenciaEmpleado.InsertarSalida() Then
+        Dim resultado As Boolean = AsistenciaEmpleado.InsertarSalida()
+        If resultado Then
             Label1.Text = "salida con exito"
         Else
             Label1.Text = "no salida"
         End If
 
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+
+        Dim AsistenciaEmpleado = New Asistencia With {
+            .ClvEmpleado = 2042777,
+            .Fecha = Format(DateAndTime.Now(), "dd/MM/yyyy")
+        }
+
+        Asistencia.BorrarAsistencia(AsistenciaEmpleado.ClvEmpleado, AsistenciaEmpleado.Fecha)
     End Sub
 End Class
