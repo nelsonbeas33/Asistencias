@@ -1,0 +1,5 @@
+CREATE TABLE "Admin" (
+	"Id"	INTEGER NOT NULL UNIQUE,
+	"Password"	TEXT NOT NULL CHECK(length(Password) > 8),
+	PRIMARY KEY("Id" AUTOINCREMENT)
+);
