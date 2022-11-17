@@ -129,15 +129,11 @@ Public Class Empleado
     End Function
 
     Public Function EditarEmpleado() As Boolean
-        Dim objConn As SQLiteConnection
-        objConn = New SQLiteConnection(cadena_conexion)
-
-        objConn.Open()
 
         Dim ComandText As String
 
         ComandText = "DELETE FROM Empleado WHERE ClvEmpleado = " + ClvEmpleado.ToString()
-        Dim QueryDelete As New SQLiteCommand(ComandText, objConn)
+        Dim QueryDelete As New SQLiteCommand(ComandText, DB.objConn)
         QueryDelete.ExecuteNonQuery()
 
         ComandText = "insert into Empleado (
@@ -168,10 +164,19 @@ Public Class Empleado
         ComandText += HorasSemana.ToString()
         ComandText += "');"
 
-        Dim QueryInsert As New SQLiteCommand(ComandText, objConn)
+        Dim QueryInsert As New SQLiteCommand(ComandText, DB.objConn)
         QueryInsert.ExecuteNonQuery()
 
-        objConn.Close()
+        Return True
+    End Function
+
+    Public Function BorrarEmpleado(_ClveEmpleado As Integer) As Boolean
+        Dim ComandText As String
+
+        ComandText = "delete from Empleado"
+        Dim Query As New SQLiteCommand(ComandText, DB.objConn)
+        Query.ExecuteNonQuery()
+
         Return True
     End Function
 

@@ -6,14 +6,12 @@ Public Class getNames
 
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim objConn As SQLiteConnection
         Dim objcommand As SQLiteCommand
         Dim objReader As SQLiteDataReader
 
         Try
-            objConn = New SQLiteConnection(cadena_conexion)
-            objConn.Open()
-            objcommand = objConn.CreateCommand()
+
+            objcommand = DB.objConn.CreateCommand()
             objcommand.CommandText = "SELECT * from Empleado"
             objReader = objcommand.ExecuteReader()
 
@@ -24,10 +22,7 @@ Public Class getNames
 
         Catch ex As Exception
             MsgBox(ex.ToString)
-        Finally
-            If Not IsNothing(objConn) Then
-                objConn.Close()
-            End If
+
         End Try
     End Sub
 
@@ -135,5 +130,28 @@ Public Class getNames
         }
 
         Asistencia.BorrarAsistencia(AsistenciaEmpleado.ClvEmpleado, AsistenciaEmpleado.Fecha)
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+
+        Dim asistenciatmp As Asistencia = Asistencia.BuscarAsistencia(2042777, "17/11/2022")
+
+        If asistenciatmp.ClvEmpleado = 0 Then
+            Label1.Text = "no existe"
+        Else
+            Label1.Text = "existe"
+        End If
+
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+
+        Dim Empleadotmp As Empleado = New Empleado()
+        Empleadotmp.BorrarEmpleado(2042777)
+    End Sub
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        Dim Asistemciatmp As Asistencia = Asistencia.BuscarPorClv(2042777)
+        Label1.Text = Asistemciatmp.Fecha.ToShortDateString()
     End Sub
 End Class

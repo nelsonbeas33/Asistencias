@@ -23,11 +23,8 @@ Public Class Asistencia
     End Sub
 
     Public Function InsertarAsitencia() As Boolean
-        Dim objConn As SQLiteConnection
-        objConn = New SQLiteConnection(cadena_conexion)
         Dim AsistenciaBuscada = New Asistencia()
 
-        objConn.Open()
         Dim ComandText As String
         AsistenciaBuscada = BuscarAsistencia(ClvEmpleado, Fecha)
 
@@ -37,59 +34,46 @@ Public Class Asistencia
             ComandText += "'" + Format(DateTime.Now(), "hh:mm:ss") + "',"
             ComandText += ClvEmpleado.ToString()
             ComandText += ");"
-            Dim Query As New SQLiteCommand(ComandText, objConn)
+            Dim Query As New SQLiteCommand(ComandText, DB.objConn)
             Query.ExecuteNonQuery()
 
-            objConn.Close()
             Return True
         End If
 
-        objConn.Close()
         Return False
     End Function
 
     Public Shared Function BorrarAsistencia(_ClvEmpleado As Integer, _Fecha As String) As Boolean
 
-        Dim objConn As SQLiteConnection
-        objConn = New SQLiteConnection(cadena_conexion)
-
-        objConn.Open()
         Dim ComandText As String
 
         ComandText = "DELETE FROM Asistencia WHERE ClvEmpleado = " + _ClvEmpleado.ToString + " AND Fecha = '" + _Fecha + "'"
-        Dim Query As New SQLiteCommand(ComandText, objConn)
+        Dim Query As New SQLiteCommand(ComandText, DB.objConn)
 
         Query.ExecuteNonQuery()
-        objConn.Close()
 
         Return False
     End Function
 
     Public Function InsertarSalida() As Boolean
-        Dim objConn As SQLiteConnection
-        objConn = New SQLiteConnection(cadena_conexion)
 
-        objConn.Open()
         Dim ComandText As String
 
         ComandText = "update Asistencia set Salida = '" + Format(DateTime.Now(), "hh:mm:ss") + "' WHERE ClvEmpleado = 2042777" 'falta fecha
-        Dim Query As New SQLiteCommand(ComandText, objConn)
+        Dim Query As New SQLiteCommand(ComandText, DB.objConn)
 
         Query.ExecuteNonQuery()
-        objConn.Close()
     End Function
 
     Public Shared Function BuscarAsistencia(_ClvEmpleado As String, _Fecha As String) As Asistencia
-        Dim objConn As SQLiteConnection
         Dim objcommand As SQLiteCommand
         Dim objReader As SQLiteDataReader
         Dim AsistenciaTMp As Asistencia
 
-        objConn = New SQLiteConnection(cadena_conexion)
-        objConn.Open()
-        objcommand = objConn.CreateCommand()
+
+        objcommand = DB.objConn.CreateCommand()
         objcommand.CommandText = "SELECT * FROM Asistencia 
-            WHERE ClvEmpleado = " + _ClvEmpleado.ToString() + ""
+            WHERE ClvEmpleado = " + _ClvEmpleado.ToString() + " AND Fecha = '" + _Fecha + "'"
         objReader = objcommand.ExecuteReader()
         AsistenciaTMp = New Asistencia()
 
@@ -108,7 +92,34 @@ Public Class Asistencia
 
         Return AsistenciaTMp
 
-        objConn.Close()
+    End Function
+
+    Public Shared Function BuscarPorClv(_ClvEmpleado As String) As Asistencia
+
+        Dim objcommand As SQLiteCommand
+        Dim objReader As SQLiteDataReader
+        Dim AsistenciaTMp As Asistencia
+
+
+        objcommand = DB.objConn.CreateCommand()
+        objcommand.CommandText = "SELECT * FROM Asistencia WHERE ClvEmpleado = " + _ClvEmpleado.ToString()
+        objReader = objcommand.ExecuteReader()
+        AsistenciaTMp = New Asistencia()
+
+        If (Not objReader.Read()) Then
+            Return AsistenciaTMp
+        End If
+
+        AsistenciaTMp.Id = objReader("Id")
+        AsistenciaTMp.ClvEmpleado = objReader("ClvEmpleado")
+        AsistenciaTMp.Fecha = Convert.ToDateTime(objReader("Fecha"))
+        AsistenciaTMp.Llegada = Convert.ToDateTime(objReader("Llegada"))
+
+        If (objReader("Salida") <> "") Then
+            AsistenciaTMp.Salida = Convert.ToDateTime(objReader("Salida"))
+        End If
+
+        Return AsistenciaTMp
 
     End Function
 
