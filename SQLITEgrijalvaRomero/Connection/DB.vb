@@ -9,4 +9,9 @@ Public Class DB
         objConn.Open()
     End Sub
 
+    Public Shared Sub refresh()
+        objConn.Close()
+        objConn.Open()
+    End Sub
+
 End Class

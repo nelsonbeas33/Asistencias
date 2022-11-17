@@ -138,8 +138,15 @@ Public Class getNames
 
         If asistenciatmp.ClvEmpleado = 0 Then
             Label1.Text = "no existe"
+            ListBox1.Items.Clear()
         Else
             Label1.Text = "existe"
+            ListBox1.Items.Clear()
+
+
+
+            ListBox1.Items.Add(asistenciatmp.Fecha.ToShortDateString().ToString() + " - " + asistenciatmp.ClvEmpleado.ToString())
+
         End If
 
     End Sub
