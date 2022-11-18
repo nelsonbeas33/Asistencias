@@ -205,4 +205,6 @@ Public Class getNames
             ListBox1.Items.Add(texto)
         Next Asistenciatmp
     End Sub
+
+
 End Class

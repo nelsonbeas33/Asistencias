@@ -1,2 +1,6 @@
 SELECT * FROM Asistencia
 HERE Fecha = '12/17/2022'
+pleado = 2042777 AND Fecha = '11/18/2022'
+erno,
+            ApellidoMaterno, 
+            Direccion, Cargo, Rfc, Curp, Telefono, HorasSemana) VALUES (2042777,'Nombre1','apellido1','Apellido1.1','direccion 1','123','123','123','8117201353','40');
