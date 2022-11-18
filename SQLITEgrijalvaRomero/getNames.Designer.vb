@@ -25,7 +25,6 @@ Partial Class getNames
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
@@ -33,6 +32,7 @@ Partial Class getNames
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ListBox1
@@ -60,15 +60,6 @@ Partial Class getNames
         Me.Button2.TabIndex = 2
         Me.Button2.Text = "insertar"
         Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(31, 283)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(39, 13)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "Label1"
         '
         'Button3
         '
@@ -108,11 +99,11 @@ Partial Class getNames
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(266, 216)
+        Me.Button7.Location = New System.Drawing.Point(23, 245)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(75, 23)
+        Me.Button7.Size = New System.Drawing.Size(237, 35)
         Me.Button7.TabIndex = 8
-        Me.Button7.Text = "buscar as"
+        Me.Button7.Text = "buscar asistencia de empleado con fecha"
         Me.Button7.UseVisualStyleBackColor = True
         '
         'Button8
@@ -126,12 +117,21 @@ Partial Class getNames
         '
         'Button9
         '
-        Me.Button9.Location = New System.Drawing.Point(347, 216)
+        Me.Button9.Location = New System.Drawing.Point(23, 286)
         Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(128, 23)
+        Me.Button9.Size = New System.Drawing.Size(237, 33)
         Me.Button9.TabIndex = 10
         Me.Button9.Text = "buscar por empleado" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.Button9.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(514, 168)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(39, 13)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "Label1"
         '
         'getNames
         '
@@ -158,7 +158,6 @@ Partial Class getNames
     Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents Label1 As Label
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents Button5 As Button
@@ -166,4 +165,5 @@ Partial Class getNames
     Friend WithEvents Button7 As Button
     Friend WithEvents Button8 As Button
     Friend WithEvents Button9 As Button
+    Friend WithEvents Label1 As Label
 End Class

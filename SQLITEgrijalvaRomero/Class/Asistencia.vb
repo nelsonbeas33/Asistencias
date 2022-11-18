@@ -26,14 +26,15 @@ Public Class Asistencia
         Dim AsistenciaBuscada = New Asistencia()
 
         Dim ComandText As String
-        AsistenciaBuscada = BuscarAsistencia(ClvEmpleado, Fecha)
+        AsistenciaBuscada = BuscarAsistencia(ClvEmpleado, Format(Fecha, "MM/dd/yyyy"))
 
         If AsistenciaBuscada.ClvEmpleado = 0 Then
             ComandText = "INSERT INTO Asistencia (Fecha, Llegada, ClvEmpleado) VALUES ("
-            ComandText += "'" + Date.Today() + "',"
+            ComandText += "'" + Format(Date.Today(), "MM/dd/yyyy") + "',"
             ComandText += "'" + Format(DateTime.Now(), "hh:mm:ss") + "',"
             ComandText += ClvEmpleado.ToString()
             ComandText += ");"
+            DB.WriteTextFile(ComandText)
             Dim Query As New SQLiteCommand(ComandText, DB.objConn)
             Query.ExecuteNonQuery()
 
@@ -49,20 +50,26 @@ Public Class Asistencia
 
         ComandText = "DELETE FROM Asistencia WHERE ClvEmpleado = " + _ClvEmpleado.ToString + " AND Fecha = '" + _Fecha + "'"
         Dim Query As New SQLiteCommand(ComandText, DB.objConn)
-
+        MsgBox(ComandText)
         Query.ExecuteNonQuery()
 
-        Return False
+        Return True
     End Function
 
     Public Function InsertarSalida() As Boolean
 
         Dim ComandText As String
+        Dim AsistenciaBuscada As Asistencia = BuscarAsistencia(ClvEmpleado, Format(Fecha, "MM/dd/yyyy"))
 
-        ComandText = "update Asistencia set Salida = '" + Format(DateTime.Now(), "hh:mm:ss") + "' WHERE ClvEmpleado = 2042777" 'falta fecha
-        Dim Query As New SQLiteCommand(ComandText, DB.objConn)
+        If AsistenciaBuscada.ClvEmpleado <> 0 And Format(AsistenciaBuscada.Salida, "MM/dd/yyyy") = "01/01/0001" Then
+            ComandText = "update Asistencia set Salida = '" + Format(DateTime.Now(), "hh:mm:ss") + "' WHERE ClvEmpleado = " + ClvEmpleado.ToString() + " AND Fecha = '" + Format(Fecha, "MM/dd/yyyy") + "'"
+            DB.WriteTextFile(ComandText)
+            Dim Query As New SQLiteCommand(ComandText, DB.objConn)
+            Query.ExecuteNonQuery()
+            Return True
+        End If
 
-        Query.ExecuteNonQuery()
+        Return False
     End Function
 
     Public Shared Function BuscarAsistencia(_ClvEmpleado As String, _Fecha As String) As Asistencia
@@ -73,53 +80,57 @@ Public Class Asistencia
 
         objcommand = DB.objConn.CreateCommand()
         objcommand.CommandText = "SELECT * FROM Asistencia 
-            WHERE ClvEmpleado = " + _ClvEmpleado.ToString() + " AND Fecha = '" + _Fecha + "'"
+            WHERE ClvEmpleado = " + _ClvEmpleado.ToString() + " AND Fecha = '" + _Fecha +"'"
         objReader = objcommand.ExecuteReader()
         AsistenciaTMp = New Asistencia()
-
         If (Not objReader.Read()) Then
             Return AsistenciaTMp
         End If
 
         AsistenciaTMp.Id = objReader("Id")
         AsistenciaTMp.ClvEmpleado = objReader("ClvEmpleado")
-        AsistenciaTMp.Fecha = Convert.ToDateTime(objReader("Fecha"))
-        AsistenciaTMp.Llegada = Convert.ToDateTime(objReader("Llegada"))
+        AsistenciaTMp.Fecha = DateTime.Parse(objReader("Fecha"))
+        AsistenciaTMp.Llegada = DateTime.Parse(objReader("Llegada"))
 
         If (objReader("Salida") <> "") Then
-            AsistenciaTMp.Salida = Convert.ToDateTime(objReader("Salida"))
+            AsistenciaTMp.Salida = DateTime.Parse(objReader("Salida"))
         End If
 
         Return AsistenciaTMp
 
     End Function
 
-    Public Shared Function BuscarPorClv(_ClvEmpleado As String) As Asistencia
+    Public Shared Function BuscarPorClv(_ClvEmpleado As String) As List(Of Asistencia)
 
         Dim objcommand As SQLiteCommand
         Dim objReader As SQLiteDataReader
-        Dim AsistenciaTMp As Asistencia
 
+        Dim AsistenciaTmp As Asistencia = New Asistencia()
+        Dim Asistencias As List(Of Asistencia) = New List(Of Asistencia)()
 
         objcommand = DB.objConn.CreateCommand()
-        objcommand.CommandText = "SELECT * FROM Asistencia WHERE ClvEmpleado = " + _ClvEmpleado.ToString()
+        objcommand.CommandText = "SELECT * FROM Asistencia WHERE ClvEmpleado = " + _ClvEmpleado
         objReader = objcommand.ExecuteReader()
-        AsistenciaTMp = New Asistencia()
 
-        If (Not objReader.Read()) Then
-            Return AsistenciaTMp
-        End If
+        While (objReader.Read())
 
-        AsistenciaTMp.Id = objReader("Id")
-        AsistenciaTMp.ClvEmpleado = objReader("ClvEmpleado")
-        AsistenciaTMp.Fecha = Convert.ToDateTime(objReader("Fecha"))
-        AsistenciaTMp.Llegada = Convert.ToDateTime(objReader("Llegada"))
+            AsistenciaTmp = New Asistencia()
 
-        If (objReader("Salida") <> "") Then
-            AsistenciaTMp.Salida = Convert.ToDateTime(objReader("Salida"))
-        End If
+            AsistenciaTmp.Id = objReader("Id")
+            AsistenciaTmp.ClvEmpleado = objReader("ClvEmpleado")
+            AsistenciaTmp.Fecha = Convert.ToDateTime(objReader("Fecha"))
+            AsistenciaTmp.Llegada = Convert.ToDateTime(objReader("Llegada"))
 
-        Return AsistenciaTMp
+            If (objReader("Salida") <> "") Then
+                AsistenciaTmp.Salida = Convert.ToDateTime(objReader("Salida"))
+            Else
+                AsistenciaTmp.Salida = New DateTime()
+            End If
+
+            Asistencias.Add(AsistenciaTmp)
+        End While
+
+        Return Asistencias
 
     End Function
 

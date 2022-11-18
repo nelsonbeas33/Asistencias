@@ -14,4 +14,15 @@ Public Class DB
         objConn.Open()
     End Sub
 
+    Public Shared Sub WriteTextFile(query As String)
+        Dim textFileStream As New IO.FileStream("queryTMP.txt", IO.FileMode.OpenOrCreate, IO.FileAccess.ReadWrite, IO.FileShare.None)
+
+        Dim myFileWriter As New IO.StreamWriter(textFileStream)
+
+        myFileWriter.WriteLine(query)
+
+        myFileWriter.Close()
+        textFileStream.Close()
+    End Sub
+
 End Class
