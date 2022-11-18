@@ -1,6 +1,4 @@
 
-delete from Asistencia
-
 INSERT INTO Asistencia (Fecha, Llegada, Salida, ClvEmpleado) VALUES ('12/17/2022','05:44:06','05:44:06' ,2042777);
 INSERT INTO Asistencia (Fecha, Llegada, Salida, ClvEmpleado) VALUES ('12/18/2022','05:44:06','05:44:06' ,2042777);
 INSERT INTO Asistencia (Fecha, Llegada, Salida, ClvEmpleado) VALUES ('12/19/2022','05:44:06','05:44:06' ,2042777);
