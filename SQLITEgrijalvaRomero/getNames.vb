@@ -6,29 +6,14 @@ Public Class getNames
 
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim objConn As SQLiteConnection
-        Dim objcommand As SQLiteCommand
-        Dim objReader As SQLiteDataReader
 
-        Try
-            objConn = New SQLiteConnection(cadena_conexion)
-            objConn.Open()
-            objcommand = objConn.CreateCommand()
-            objcommand.CommandText = "SELECT * from Empleado"
-            objReader = objcommand.ExecuteReader()
+        Dim Empleados As List(Of Empleado) = Empleado.GetEmpleados()
 
-            ListBox1.Items.Clear()
-            While (objReader.Read())
-            ListBox1.Items.Add(objReader("Nombre"))
-            End While
+        ListBox1.Items.Clear()
+        For Each tmpEmpleado As Empleado In Empleados
+            ListBox1.Items.Add(tmpEmpleado.Nombre)
+        Next tmpEmpleado
 
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        Finally
-            If Not IsNothing(objConn) Then
-                objConn.Close()
-            End If
-        End Try
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -51,16 +36,11 @@ Public Class getNames
             40
         )
 
-
-        EmpleadoBuscado = Empleado.BuscarEmpleadoClv(2042777)
-
-        If EmpleadoBuscado.ClvEmpleado = 0 Then
-            NuevoEmpleado.InsertarEmpleado()
-            Label1.Text = NuevoEmpleado.Nombre
+        If NuevoEmpleado.InsertarEmpleado() Then
+            Label1.Text = "insertado"
         Else
-            Label1.Text = "clv ya existente"
+            Label1.Text = "no insertado"
         End If
-
 
 
     End Sub
@@ -99,7 +79,8 @@ Public Class getNames
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
 
         Dim AsistenciaEmpleado = New Asistencia With {
-            .ClvEmpleado = 2042777
+            .ClvEmpleado = 2042777,
+            .Fecha = DateAndTime.Now()
         }
 
         If AsistenciaEmpleado.InsertarAsitencia() Then
@@ -113,15 +94,80 @@ Public Class getNames
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
 
         Dim AsistenciaEmpleado = New Asistencia With {
-            .ClvEmpleado = 2042777
+            .ClvEmpleado = 2042777,
+            .Fecha = DateAndTime.Now()
         }
 
-
-        If AsistenciaEmpleado.InsertarSalida() Then
+        Dim resultado As Boolean = AsistenciaEmpleado.InsertarSalida()
+        If resultado Then
             Label1.Text = "salida con exito"
         Else
             Label1.Text = "no salida"
         End If
 
     End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+
+        Dim AsistenciaEmpleado = New Asistencia With {
+            .ClvEmpleado = 2042777,
+            .Fecha = DateAndTime.Now()
+        }
+
+        Asistencia.BorrarAsistencia(AsistenciaEmpleado.ClvEmpleado, Format(AsistenciaEmpleado.Fecha, "MM/dd/yyyy"))
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+
+        Dim asistenciatmp As Asistencia = Asistencia.BuscarAsistencia(2042777, "11/17/2022")
+        'los armumenos de esta funcion son el empleado y la fecha buscada
+
+        If asistenciatmp.ClvEmpleado = 0 Then
+            Label1.Text = "no existe"
+            ListBox1.Items.Clear()
+        Else
+            Label1.Text = "existe"
+            ListBox1.Items.Clear()
+
+            Dim texto As String
+            texto = asistenciatmp.ClvEmpleado.ToString()
+            texto += " - " + asistenciatmp.Fecha.ToShortDateString()
+            texto += " - " + asistenciatmp.Llegada.TimeOfDay.ToString()
+
+            If Format(asistenciatmp.Salida, "MM/dd/yyyy") <> "01/01/0001" Then
+                texto += " - " + asistenciatmp.Salida.TimeOfDay.ToString()
+            End If
+
+            ListBox1.Items.Add(texto)
+        End If
+
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+
+        Dim Empleadotmp As Empleado = New Empleado()
+        Empleadotmp.BorrarEmpleado(2042777)
+    End Sub
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+
+        Dim listaAsistencias As List(Of Asistencia) = Asistencia.BuscarPorClv(2042777)
+
+        ListBox1.Items.Clear()
+        For Each Asistenciatmp As Asistencia In listaAsistencias
+
+            Dim texto As String
+            texto = Asistenciatmp.ClvEmpleado.ToString()
+            texto += " - " + Asistenciatmp.Fecha.ToShortDateString()
+            texto += " - " + Asistenciatmp.Llegada.TimeOfDay.ToString()
+
+            If Format(Asistenciatmp.Salida, "MM/dd/yyyy") <> "01/01/0001" Then
+                texto += " - " + Asistenciatmp.Salida.TimeOfDay.ToString()
+            End If
+
+            ListBox1.Items.Add(texto)
+        Next Asistenciatmp
+
+    End Sub
+
 End Class

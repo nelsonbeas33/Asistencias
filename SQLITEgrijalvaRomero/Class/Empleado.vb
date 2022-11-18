@@ -1,4 +1,5 @@
-﻿Imports Finisar.SQLite
+﻿Imports System.Reflection.Emit
+Imports Finisar.SQLite
 
 Public Class Empleado
 
@@ -45,99 +46,121 @@ Public Class Empleado
 
 
     Public Shared Function BuscarEmpleadoClv(_ClvEmpleado As String) As Empleado
-        Dim objConn As SQLiteConnection
         Dim objcommand As SQLiteCommand
         Dim objReader As SQLiteDataReader
         Dim EmpleadoBuscado As Empleado
 
-        Try
-            objConn = New SQLiteConnection(cadena_conexion)
-            objConn.Open()
-            objcommand = objConn.CreateCommand()
-            objcommand.CommandText = "SELECT * FROM Empleado WHERE ClvEmpleado = " + _ClvEmpleado
-            objReader = objcommand.ExecuteReader()
-            EmpleadoBuscado = New Empleado()
+        objcommand = DB.objConn.CreateCommand()
+        objcommand.CommandText = "SELECT * FROM Empleado WHERE ClvEmpleado = " + _ClvEmpleado
+        objReader = objcommand.ExecuteReader()
+        EmpleadoBuscado = New Empleado()
 
-            If (Not objReader.Read()) Then
-                Return EmpleadoBuscado
-            End If
-
-            EmpleadoBuscado.Id = objReader("Id")
-            EmpleadoBuscado.ClvEmpleado = objReader("ClvEmpleado")
-            EmpleadoBuscado.Nombre = objReader("Nombre")
-            EmpleadoBuscado.ApellidoPaterno = objReader("ApellidoPaterno")
-            EmpleadoBuscado.ApellidoMaterno = objReader("ApellidoMaterno")
-            EmpleadoBuscado.Direccion = objReader("Direccion")
-            EmpleadoBuscado.Cargo = objReader("Cargo")
-            EmpleadoBuscado.Rfc = objReader("Rfc")
-            EmpleadoBuscado.Curp = objReader("Curp")
-            EmpleadoBuscado.Telefono = objReader("Telefono")
-            EmpleadoBuscado.HorasSemana = objReader("HorasSemana")
-
+        If (Not objReader.Read()) Then
             Return EmpleadoBuscado
+        End If
 
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        Finally
-            If Not IsNothing(objConn) Then
-                objConn.Close()
-            End If
-        End Try
+        EmpleadoBuscado.Id = objReader("Id")
+        EmpleadoBuscado.ClvEmpleado = objReader("ClvEmpleado")
+        EmpleadoBuscado.Nombre = objReader("Nombre")
+        EmpleadoBuscado.ApellidoPaterno = objReader("ApellidoPaterno")
+        EmpleadoBuscado.ApellidoMaterno = objReader("ApellidoMaterno")
+        EmpleadoBuscado.Direccion = objReader("Direccion")
+        EmpleadoBuscado.Cargo = objReader("Cargo")
+        EmpleadoBuscado.Rfc = objReader("Rfc")
+        EmpleadoBuscado.Curp = objReader("Curp")
+        EmpleadoBuscado.Telefono = objReader("Telefono")
+        EmpleadoBuscado.HorasSemana = objReader("HorasSemana")
+
+        Return EmpleadoBuscado
+
+    End Function
+
+    Public Shared Function GetEmpleados() As List(Of Empleado)
+
+        Dim Empleadotmp As Empleado
+        Dim Empleados As List(Of Empleado) = New List(Of Empleado)()
+
+        Dim objcommand As SQLiteCommand
+        Dim objReader As SQLiteDataReader
+
+        objcommand = DB.objConn.CreateCommand()
+        objcommand.CommandText = "SELECT * FROM Empleado"
+        objReader = objcommand.ExecuteReader()
+
+        While (objReader.Read())
+
+            Empleadotmp = New Empleado()
+
+            Empleadotmp.Id = objReader("Id")
+            Empleadotmp.ClvEmpleado = objReader("ClvEmpleado")
+            Empleadotmp.Nombre = objReader("Nombre")
+            Empleadotmp.ApellidoPaterno = objReader("ApellidoPaterno")
+            Empleadotmp.ApellidoMaterno = objReader("ApellidoMaterno")
+            Empleadotmp.Direccion = objReader("Direccion")
+            Empleadotmp.Cargo = objReader("Cargo")
+            Empleadotmp.Rfc = objReader("Rfc")
+            Empleadotmp.Curp = objReader("Curp")
+            Empleadotmp.Telefono = objReader("Telefono")
+            Empleadotmp.HorasSemana = objReader("HorasSemana")
+
+            Empleados.Add(Empleadotmp)
+        End While
+
+        Return Empleados
 
     End Function
 
     Public Function InsertarEmpleado() As Boolean
-        Dim objConn As SQLiteConnection
-        objConn = New SQLiteConnection(cadena_conexion)
 
-        objConn.Open()
+        Dim EmpleadoBuscado As Empleado = Empleado.BuscarEmpleadoClv(ClvEmpleado)
 
-        Dim ComandText As String
+        If EmpleadoBuscado.ClvEmpleado = 0 Then
+            Dim ComandText As String
 
-        ComandText = "insert into Empleado (
+            ComandText = "insert into Empleado (
             ClvEmpleado, 
             Nombre, 
             ApellidoPaterno,
             ApellidoMaterno, 
             Direccion, Cargo, Rfc, Curp, Telefono, HorasSemana) VALUES ("
 
-        ComandText += ClvEmpleado.ToString()
-        ComandText += ",'"
-        ComandText += Nombre
-        ComandText += "','"
-        ComandText += ApellidoPaterno
-        ComandText += "','"
-        ComandText += ApellidoMaterno
-        ComandText += "','"
-        ComandText += Direccion
-        ComandText += "','"
-        ComandText += Cargo
-        ComandText += "','"
-        ComandText += Rfc
-        ComandText += "','"
-        ComandText += Curp
-        ComandText += "','"
-        ComandText += Telefono
-        ComandText += "','"
-        ComandText += HorasSemana.ToString()
-        ComandText += "');"
-        Dim Query As New SQLiteCommand(ComandText, objConn)
-        Query.ExecuteNonQuery()
+            ComandText += ClvEmpleado.ToString()
+            ComandText += ",'"
+            ComandText += Nombre
+            ComandText += "','"
+            ComandText += ApellidoPaterno
+            ComandText += "','"
+            ComandText += ApellidoMaterno
+            ComandText += "','"
+            ComandText += Direccion
+            ComandText += "','"
+            ComandText += Cargo
+            ComandText += "','"
+            ComandText += Rfc
+            ComandText += "','"
+            ComandText += Curp
+            ComandText += "','"
+            ComandText += Telefono
+            ComandText += "','"
+            ComandText += HorasSemana.ToString()
+            ComandText += "');"
+            Dim Query As New SQLiteCommand(ComandText, DB.objConn)
+            DB.WriteTextFile(ComandText)
+            Query.ExecuteNonQuery()
+            Return True
+        Else
+            Return False
+        End If
 
-        objConn.Close()
-        Return True
+
     End Function
 
     Public Function EditarEmpleado() As Boolean
-        Dim objConn As SQLiteConnection
-        objConn = New SQLiteConnection(cadena_conexion)
-
-        objConn.Open()
 
         Dim ComandText As String
 
         ComandText = "DELETE FROM Empleado WHERE ClvEmpleado = " + ClvEmpleado.ToString()
-        Dim QueryDelete As New SQLiteCommand(ComandText, objConn)
+        Dim QueryDelete As New SQLiteCommand(ComandText, DB.objConn)
         QueryDelete.ExecuteNonQuery()
 
         ComandText = "insert into Empleado (
@@ -168,10 +191,19 @@ Public Class Empleado
         ComandText += HorasSemana.ToString()
         ComandText += "');"
 
-        Dim QueryInsert As New SQLiteCommand(ComandText, objConn)
+        Dim QueryInsert As New SQLiteCommand(ComandText, DB.objConn)
         QueryInsert.ExecuteNonQuery()
 
-        objConn.Close()
+        Return True
+    End Function
+
+    Public Function BorrarEmpleado(_ClveEmpleado As Integer) As Boolean
+        Dim ComandText As String
+
+        ComandText = "DELETE FROM Empleado WHERE ClvEmpleado = " + _ClveEmpleado.ToString
+        Dim Query As New SQLiteCommand(ComandText, DB.objConn)
+        Query.ExecuteNonQuery()
+
         Return True
     End Function
 

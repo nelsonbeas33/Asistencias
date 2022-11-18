@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Class\Asistencia.vb" />
     <Compile Include="Class\Empleado.vb" />
+    <Compile Include="Connection\DB.vb" />
     <Compile Include="getNames.vb">
       <SubType>Form</SubType>
     </Compile>

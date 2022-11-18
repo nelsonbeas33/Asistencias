@@ -1,0 +1,6 @@
+insert into Empleado (
+            ClvEmpleado, 
+            Nombre, 
+            ApellidoPaterno,
+            ApellidoMaterno, 
+            Direccion, Cargo, Rfc, Curp, Telefono, HorasSemana) VALUES (2042777,'Nombre1','apellido1','Apellido1.1','direccion 1','123','123','123','8117201353','40');
