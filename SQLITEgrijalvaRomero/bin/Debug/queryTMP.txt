@@ -1,0 +1,2 @@
+SELECT * FROM Asistencia
+HERE Fecha = '12/17/2022'

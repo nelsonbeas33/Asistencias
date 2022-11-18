@@ -74,7 +74,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Empleado.vb" />
+    <Compile Include="Class\Asistencia.vb" />
+    <Compile Include="Class\Empleado.vb" />
+    <Compile Include="Class\Herramientas\transform.vb" />
+    <Compile Include="Connection\DB.vb" />
     <Compile Include="getNames.vb">
       <SubType>Form</SubType>
     </Compile>

@@ -1,8 +1,14 @@
 {
   "ExpandedNodes": [
+<<<<<<< HEAD
     "",
     "\\SQLITEgrijalvaRomero"
   ],
   "SelectedNode": "\\SQLITEgrijalvaRomero\\getNames.vb",
+=======
+    ""
+  ],
+  "SelectedNode": "\\SistemaAsistencia.sln",
+>>>>>>> d27b6c175b6815a253a1e1c174d1b8825ca63251
   "PreviewInSolutionExplorer": false
 }
