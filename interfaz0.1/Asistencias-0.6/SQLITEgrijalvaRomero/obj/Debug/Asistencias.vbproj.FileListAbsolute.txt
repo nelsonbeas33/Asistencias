@@ -71,3 +71,17 @@ C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 int
 C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\obj\Debug\SQLITEgrijalvaRomero.exe
 C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\obj\Debug\SQLITEgrijalvaRomero.xml
 C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\obj\Debug\SQLITEgrijalvaRomero.pdb
+C:\Users\nelson\source\repos\Asistencias\interfaz0.1\Asistencias-0.6\SQLITEgrijalvaRomero\bin\Debug\SQLITEgrijalvaRomero.exe.config
+C:\Users\nelson\source\repos\Asistencias\interfaz0.1\Asistencias-0.6\SQLITEgrijalvaRomero\bin\Debug\SQLITEgrijalvaRomero.exe
+C:\Users\nelson\source\repos\Asistencias\interfaz0.1\Asistencias-0.6\SQLITEgrijalvaRomero\bin\Debug\SQLITEgrijalvaRomero.pdb
+C:\Users\nelson\source\repos\Asistencias\interfaz0.1\Asistencias-0.6\SQLITEgrijalvaRomero\bin\Debug\SQLITEgrijalvaRomero.xml
+C:\Users\nelson\source\repos\Asistencias\interfaz0.1\Asistencias-0.6\SQLITEgrijalvaRomero\obj\Debug\Asistencias.vbproj.AssemblyReference.cache
+C:\Users\nelson\source\repos\Asistencias\interfaz0.1\Asistencias-0.6\SQLITEgrijalvaRomero\obj\Debug\Asistencias.vbproj.SuggestedBindingRedirects.cache
+C:\Users\nelson\source\repos\Asistencias\interfaz0.1\Asistencias-0.6\SQLITEgrijalvaRomero\obj\Debug\SQLITEgrijalvaRomero.getNames.resources
+C:\Users\nelson\source\repos\Asistencias\interfaz0.1\Asistencias-0.6\SQLITEgrijalvaRomero\obj\Debug\SQLITEgrijalvaRomero.Resources.resources
+C:\Users\nelson\source\repos\Asistencias\interfaz0.1\Asistencias-0.6\SQLITEgrijalvaRomero\obj\Debug\Asistencias.vbproj.GenerateResource.cache
+C:\Users\nelson\source\repos\Asistencias\interfaz0.1\Asistencias-0.6\SQLITEgrijalvaRomero\obj\Debug\Asistencias.vbproj.CoreCompileInputs.cache
+C:\Users\nelson\source\repos\Asistencias\interfaz0.1\Asistencias-0.6\SQLITEgrijalvaRomero\obj\Debug\Asistencias.vbproj.CopyComplete
+C:\Users\nelson\source\repos\Asistencias\interfaz0.1\Asistencias-0.6\SQLITEgrijalvaRomero\obj\Debug\SQLITEgrijalvaRomero.exe
+C:\Users\nelson\source\repos\Asistencias\interfaz0.1\Asistencias-0.6\SQLITEgrijalvaRomero\obj\Debug\SQLITEgrijalvaRomero.xml
+C:\Users\nelson\source\repos\Asistencias\interfaz0.1\Asistencias-0.6\SQLITEgrijalvaRomero\obj\Debug\SQLITEgrijalvaRomero.pdb
