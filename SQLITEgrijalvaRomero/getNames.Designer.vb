@@ -35,6 +35,9 @@ Partial Class getNames
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button11 = New System.Windows.Forms.Button()
+        Me.Button12 = New System.Windows.Forms.Button()
+        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.Button13 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ListBox1
@@ -153,11 +156,31 @@ Partial Class getNames
         Me.Button11.Text = "buscar por rango de fechas" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.Button11.UseVisualStyleBackColor = True
         '
+        'Button12
+        '
+        Me.Button12.Location = New System.Drawing.Point(347, 157)
+        Me.Button12.Name = "Button12"
+        Me.Button12.Size = New System.Drawing.Size(135, 23)
+        Me.Button12.TabIndex = 13
+        Me.Button12.Text = "exportar empleados" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.Button12.UseVisualStyleBackColor = True
+        '
+        'Button13
+        '
+        Me.Button13.Location = New System.Drawing.Point(347, 216)
+        Me.Button13.Name = "Button13"
+        Me.Button13.Size = New System.Drawing.Size(135, 23)
+        Me.Button13.TabIndex = 14
+        Me.Button13.Text = "exportar asistencias" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.Button13.UseVisualStyleBackColor = True
+        '
         'getNames
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(680, 453)
+        Me.Controls.Add(Me.Button13)
+        Me.Controls.Add(Me.Button12)
         Me.Controls.Add(Me.Button11)
         Me.Controls.Add(Me.Button10)
         Me.Controls.Add(Me.Button9)
@@ -190,4 +213,7 @@ Partial Class getNames
     Friend WithEvents Label1 As Label
     Friend WithEvents Button10 As Button
     Friend WithEvents Button11 As Button
+    Friend WithEvents Button12 As Button
+    Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
+    Friend WithEvents Button13 As Button
 End Class

@@ -219,10 +219,41 @@ Public Class Asistencia
             Next temporal
         End If
 
-
-
         Return AsistenciasFiltradas
 
+    End Function
+
+    Public Shared Function GetAsistencias() As List(Of Asistencia)
+        Dim objcommand As SQLiteCommand
+        Dim objReader As SQLiteDataReader
+
+        Dim AsistenciaTmp As Asistencia = New Asistencia()
+        Dim Asistencias As List(Of Asistencia) = New List(Of Asistencia)()
+
+        objcommand = DB.objConn.CreateCommand()
+        objcommand.CommandText = "SELECT * FROM Asistencia"
+        DB.WriteTextFile(objcommand.CommandText)
+        objReader = objcommand.ExecuteReader()
+
+        While (objReader.Read())
+
+            AsistenciaTmp = New Asistencia()
+
+            AsistenciaTmp.Id = objReader("Id")
+            AsistenciaTmp.ClvEmpleado = objReader("ClvEmpleado")
+            AsistenciaTmp.Fecha = transform.ToDate(objReader("Fecha"))
+            AsistenciaTmp.Llegada = Convert.ToDateTime(objReader("Llegada"))
+
+            If (objReader("Salida") <> "") Then
+                AsistenciaTmp.Salida = Convert.ToDateTime(objReader("Salida"))
+            Else
+                AsistenciaTmp.Salida = New DateTime()
+            End If
+
+            Asistencias.Add(AsistenciaTmp)
+        End While
+
+        Return Asistencias
     End Function
 
 End Class

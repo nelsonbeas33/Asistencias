@@ -57,3 +57,17 @@ C:\Users\nelson\source\repos\Asistencias\prueba1\SQLITEgrijalvaRomero\obj\Debug\
 C:\Users\nelson\source\repos\Asistencias\prueba1\SQLITEgrijalvaRomero\obj\Debug\SQLITEgrijalvaRomero.xml
 C:\Users\nelson\source\repos\Asistencias\prueba1\SQLITEgrijalvaRomero\obj\Debug\SQLITEgrijalvaRomero.pdb
 >>>>>>> d27b6c175b6815a253a1e1c174d1b8825ca63251
+C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\bin\Debug\SQLITEgrijalvaRomero.exe.config
+C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\bin\Debug\SQLITEgrijalvaRomero.exe
+C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\bin\Debug\SQLITEgrijalvaRomero.pdb
+C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\bin\Debug\SQLITEgrijalvaRomero.xml
+C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\obj\Debug\Asistencias.vbproj.AssemblyReference.cache
+C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\obj\Debug\Asistencias.vbproj.SuggestedBindingRedirects.cache
+C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\obj\Debug\SQLITEgrijalvaRomero.getNames.resources
+C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\obj\Debug\SQLITEgrijalvaRomero.Resources.resources
+C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\obj\Debug\Asistencias.vbproj.GenerateResource.cache
+C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\obj\Debug\Asistencias.vbproj.CoreCompileInputs.cache
+C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\obj\Debug\Asistencias.vbproj.CopyComplete
+C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\obj\Debug\SQLITEgrijalvaRomero.exe
+C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\obj\Debug\SQLITEgrijalvaRomero.xml
+C:\Users\e-nabeas\OneDrive - NEORIS\Documents\tarea\Sistema_Asistencias\v0.2 interfaz\SQLITEgrijalvaRomero\obj\Debug\SQLITEgrijalvaRomero.pdb

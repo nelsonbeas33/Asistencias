@@ -206,5 +206,16 @@ Public Class getNames
         Next Asistenciatmp
     End Sub
 
+    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
 
+        FolderBrowserDialog1.ShowDialog()
+        Dim path As String = FolderBrowserDialog1.SelectedPath() + "\empleados.csv"
+        excel.WriteEmpleadosCSV(path, Empleado.GetEmpleados(), ",")
+    End Sub
+
+    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
+        FolderBrowserDialog1.ShowDialog()
+        Dim path As String = FolderBrowserDialog1.SelectedPath() + "\asistencias.csv"
+        excel.WriteAsistenciasCSV(path, Asistencia.GetAsistencias(), ",")
+    End Sub
 End Class

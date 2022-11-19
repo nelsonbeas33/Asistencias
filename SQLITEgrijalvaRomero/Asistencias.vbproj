@@ -78,6 +78,7 @@
     <Compile Include="Class\Empleado.vb" />
     <Compile Include="Class\Herramientas\transform.vb" />
     <Compile Include="Connection\DB.vb" />
+    <Compile Include="Export\excel.vb" />
     <Compile Include="getNames.vb">
       <SubType>Form</SubType>
     </Compile>
